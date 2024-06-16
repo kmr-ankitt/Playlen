@@ -1,3 +1,4 @@
+// Calculator.tsx
 import React, { useEffect } from 'react';
 import axios from 'axios';
 
@@ -9,18 +10,11 @@ const Calculator: React.FC<CalculatorProps> = ({ pID }) => {
   useEffect(() => {
     const getVideoIDs = async () => {
       try {
-        const response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems`, {
-          params: {
-            part: 'snippet',
-            playlistId: pID,
-            key: import.meta.env.VITE_API_KEY
-          },
-          headers: {
-            'x-api-key': import.meta.env.VITE_API_KEY
-          }
+        const response = await axios.get(`http://localhost:5000/api/playlistItems`, {
+          params: { pID }
         });
 
-        console.log('Playlist Items:', response.data.items);
+        console.log('Playlist Items:', response.data);
       } catch (error) {
         console.error('Error fetching playlist items:', error);
       }
