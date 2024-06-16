@@ -1,14 +1,14 @@
 function Navbar() {
   return (
-    <div className=" flex justify-center gap-5 text-2xl uppercase h-1/6 items-center">
+    <div className=" flex justify-center gap-5 text-2xl uppercase h-1/6 items-center max-sm:text-xl">
       <a href="/">
-        <button>Home</button>
+        <button className="uppercase">Home</button>
       </a>
       <a href="/about">
-        <button>About</button>
+        <button className="uppercase">About</button>
       </a>
       <a href="#">
-        <button>Github</button>
+        <button className="uppercase">Github</button>
       </a>
     </div>
   );
