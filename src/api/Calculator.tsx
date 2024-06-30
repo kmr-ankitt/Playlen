@@ -1,36 +1,44 @@
-// Calculator.tsx
-import React, { useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 type CalculatorProps = {
   pID: string;
 };
 
 const Calculator: React.FC<CalculatorProps> = ({ pID }) => {
-  useEffect(() => {
-    const getVideoIDs = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/playlistItems`, {
-          params: { pID }
-        });
+  const [videoIDs, setVideoIDs] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-        console.log('Playlist Items:', response.data);
+  useEffect(() => {
+    const fetchPlaylistItems = async () => {
+      try {
+        const response = await axios.get(`/api/playlistItems?pID=${pID}`);
+        setVideoIDs(response.data);
       } catch (error) {
-        console.error('Error fetching playlist items:', error);
+        console.error("Error fetching playlist items:", error);
+        setError("Failed to fetch playlist items.");
       }
     };
 
-    if (pID) {
-      getVideoIDs();
-    }
+    fetchPlaylistItems();
   }, [pID]);
 
-  console.log('Playlist ID:', pID);
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div>
       <p>Playlist ID: {pID}</p>
-      <p>Video ID: {pID}</p>
+      {videoIDs.length > 0 ? (
+        <ul>
+          {/* {videoIDs.map((videoID) => ( */}
+            {/* <li key={videoID}>{videoID}</li> */}
+          {/* ))} */}
+        </ul>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };
