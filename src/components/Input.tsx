@@ -32,7 +32,7 @@ function Input({ sendID }: InputProps) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-2 h-[60vh] items-center justify-center">
+      <form onSubmit={handleSubmit(onSubmit)} method='post' action='/api/playlistItems' className="flex flex-col w-full gap-2 h-[60vh] items-center justify-center">
         <input
           type="text"
           placeholder="Playlist URL"

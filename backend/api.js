@@ -1,16 +1,21 @@
 import express from 'express';
 import axios from 'axios';
 import 'dotenv/config';
+import bodyParser from 'body-parser';
 
 const app = express();
 const port = 5000;
 
-app.get('/api/playlistItems', async (req, res) => {
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/api/playlistItems', async (req, res) => {
+
   try {
     const response = await axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
       params: {
         part: 'snippet',
-        playlistId:  req.query.pID,
+        playlistId:  req.body.pID,
         maxResults: 50,
         // eslint-disable-next-line no-undef
         key: process.env.YOUTUBE_API_KEY,
