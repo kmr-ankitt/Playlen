@@ -36,30 +36,30 @@ const Duration: React.FC<DurationProps> = ({ duration }) => {
     >
       <div className="  flex gap-6 justify-center max-sm:gap-4 max-sm:flex-col  flex-wrap  ">
         <SkeletonTheme baseColor="#202020" highlightColor="#444">
-          <div> <p className="text-red-400">  Total Duration:</p>
+          <div> <p className="text-red-500">  Total Duration:</p>
             {durationInHoursMinutes !== "0 hours 00 minutes" ? (
               <p> {durationInHoursMinutes} </p>
             ) : (
               <Skeleton />
             )}
           </div>
-          <div> <p className="text-red-400">  
+          <div> <p className="text-red-500">  
             Average Duration:{" "} </p>
             {duration.averageDuration !== 0 ? <p> {avgDuration} </p> : <Skeleton />}
           </div>
-          <div> <p className="text-red-400">  
+          <div> <p className="text-red-500">  
             Total Duration at 1.25x:{" "} </p>
             {duration.totalDuration !== 0 ? <p> {duration1_25x} </p> : <Skeleton />}
           </div>
-          <div> <p className="text-red-400">  
+          <div> <p className="text-red-500">  
             Total Duration at 1.5x:{" "}</p>
             {duration.totalDuration !== 0 ? <p> {duration1_5x} </p> : <Skeleton />}
           </div>
-          <div> <p className="text-red-400">  
+          <div> <p className="text-red-500">  
             Total Duration at 1.75x:{" "}</p>
             {duration.totalDuration !== 0 ? <p> {duration1_75x} </p> : <Skeleton />}
           </div>
-          <div> <p className="text-red-400">  
+          <div> <p className="text-red-500">  
             Total Duration at 2x:{" "}</p>
             {duration.totalDuration !== 0 ? <p> {duration2x} </p> : <Skeleton />}
           </div>
