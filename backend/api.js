@@ -3,7 +3,7 @@ import axios from "axios";
 import "dotenv/config";
 import bodyParser from "body-parser";
 import cors from "cors";
-import { parseISODurationToMinutes } from "./decoder.js";
+import { parseISODurationToMinutes } from "./utils/decoder.js";
 
 const app = express();
 const port = 5000;
