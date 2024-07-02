@@ -1,5 +1,11 @@
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 type DurationProps = {
-  duration: number;
+  duration: {
+    totalDuration: number;
+    averageDuration: number;
+  };
 };
 
 function convertMinutesToHours(minutes: number): string {
@@ -16,29 +22,49 @@ function calculateNewDuration(duration: number, factor: number): string {
 }
 
 const Duration: React.FC<DurationProps> = ({ duration }) => {
-  const durationInHoursMinutes = convertMinutesToHours(duration);
-  const duration1_25x = calculateNewDuration(duration, 1.25);
-  const duration1_5x = calculateNewDuration(duration, 1.5);
-  const duration1_75x = calculateNewDuration(duration, 1.75);
-  const duration2x = calculateNewDuration(duration, 2);
+  const durationInHoursMinutes = convertMinutesToHours(duration.totalDuration);
+  const avgDuration = convertMinutesToHours(duration.averageDuration);
+  const duration1_25x = calculateNewDuration(duration.totalDuration, 1.25);
+  const duration1_5x = calculateNewDuration(duration.totalDuration, 1.5);
+  const duration1_75x = calculateNewDuration(duration.totalDuration, 1.75);
+  const duration2x = calculateNewDuration(duration.totalDuration, 2);
 
   return (
-    <div className="flex flex-col items-center justify-center text-[1rem] gap-2">
-      <div>
-        {/* <p>
-          Total Duration in Minutes:{" "}
-          {duration !== 0 ? `${duration} minutes` : "--"}
-        </p> */}
-        <p>
-          Total Duration in Hours:{" "}
-          {durationInHoursMinutes !== "0 hours 00 minutes"
-            ? durationInHoursMinutes
-            : "--"}
-        </p>
-        <p>Duration at 1.25x speed: {duration !== 0 ? duration1_25x : "--"}</p>
-        <p>Duration at 1.5x speed: {duration !== 0 ? duration1_5x : "--"}</p>
-        <p>Duration at 1.75x speed: {duration !== 0 ? duration1_75x : "--"}</p>
-        <p>Duration at 2x speed: {duration !== 0 ? duration2x : "--"}</p>
+    <div
+      className="flex flex-col items-center justify-center text-[1.2rem] bg-zinc-900 text-zinc-200 p-6  max-sm:text-[1rem] mt-[-5rem] max-sm:mt-0"
+      id="final-result"
+    >
+      <div className="flex items-start justify-center gap-2 max-sm:gap-4 flex-col ">
+        <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          <p>
+            Total Duration:{" "}
+            {durationInHoursMinutes !== "0 hours 00 minutes" ? (
+              durationInHoursMinutes
+            ) : (
+              <Skeleton />
+            )}{" "}
+          </p>
+          <p>
+            Average Duration:{" "}
+            {duration.averageDuration !== 0 ? avgDuration : <Skeleton />}
+          </p>
+          <p>
+            Total Duration at 1.25x:{" "}
+            {duration.totalDuration !== 0 ? duration1_25x : <Skeleton />}
+          </p>
+          <p>
+            Total Duration at 1.5x:{" "}
+            {duration.totalDuration !== 0 ? duration1_5x : <Skeleton />}
+          </p>
+          <p>
+            Total Duration at 1.75x:{" "}
+            {duration.totalDuration !== 0 ? duration1_75x : <Skeleton />}
+          </p>
+          <p>
+            Total Duration at 2x:{" "}
+            {duration.totalDuration !== 0 ? duration2x : <Skeleton />}
+          </p>
+        </SkeletonTheme>
       </div>
     </div>
   );

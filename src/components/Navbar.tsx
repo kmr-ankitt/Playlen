@@ -1,6 +1,6 @@
 function Navbar() {
   return (
-    <div className=" flex justify-center gap-5 text-2xl uppercase h-1/6 items-center max-sm:text-xl">
+    <div className=" flex justify-center gap-5 text-2xl uppercase h-[10vh] items-center max-sm:text-xl">
       <a href="/">
         <button className="uppercase">Home</button>
       </a>

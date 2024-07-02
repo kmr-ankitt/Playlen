@@ -8,11 +8,12 @@ type FormValues = {
 };
 
 type InputProps = {
-  sendDuration: (duration: number) => void;
+  sendDuration: (duration: { totalDuration: number, averageDuration: number }) => void;
+  isSubmitted: (isSubmitted: boolean) => void;
 };
 
 
-function Input({sendDuration }: InputProps) {
+function Input({sendDuration, isSubmitted }: InputProps) {
   const { register, handleSubmit } = useForm<FormValues>();
   const [pID, setPID] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -22,8 +23,10 @@ function Input({sendDuration }: InputProps) {
     try {
       const id = extractPlaylistID(data.playlist);
       setPID(id);
+      isSubmitted(true);
 
       const response = await axios.post('http://localhost:5000/api/playlistItems', { pID: id });
+      console.log(response.data);
       sendDuration(response.data);
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -36,7 +39,7 @@ function Input({sendDuration }: InputProps) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-2 h-[60vh] items-center justify-center">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-2 h-[70vh] items-center justify-center  max-sm:h-[50vh]">
         <input
           type="text"
           placeholder="Playlist URL"

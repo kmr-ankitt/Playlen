@@ -4,18 +4,22 @@ import Input from "./components/Input";
 import Navbar from "./components/Navbar";
 
 function App() {
-  const [duration, setDuration] = useState<number>(0);
+  const [duration, setDuration] = useState({ totalDuration: 0, averageDuration: 0 });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-
-  const handleDuration = (duration: number) => {
+  const handleDuration = (duration: { totalDuration: number, averageDuration: number }) => {
     setDuration(duration);
   };
 
+  const handleSubmit = (isSubmitted: boolean) => {
+    setIsSubmitted(isSubmitted);
+  };
+
   return (
-    <div className="bg-zinc-900 text-zinc-200 h-screen font-mono">
+    <div className="bg-zinc-900 text-zinc-200 h-screen w-full font-mono">
       <Navbar />
-      <Input sendDuration={handleDuration} />
-      <Duration duration={duration} />
+      <Input sendDuration={handleDuration} isSubmitted={handleSubmit} />
+      {isSubmitted && <Duration duration={duration} />}
     </div>
   );
 }
