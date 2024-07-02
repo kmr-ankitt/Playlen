@@ -24,6 +24,7 @@ function Input({sendDuration, isSubmitted }: InputProps) {
       const id = extractPlaylistID(data.playlist);
       setPID(id);
       isSubmitted(true);
+      console.log(pID);
 
       const response = await axios.post('http://localhost:5000/api/playlistItems', { pID: id });
       console.log(response.data);
