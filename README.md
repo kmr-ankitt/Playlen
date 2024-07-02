@@ -14,7 +14,7 @@ YouTube is a great platform for sharing videos, but it's not easy to find the le
 
 ## How to use Playlen
 
-1. Go to the Playlen website.
+1. Go to the [Playlen website](https://playlen.vercel.app/).
 2. Enter the YouTube Playlist URL.
 3. Click on the "Submit" button.
 4. Wait for the results to load.
