@@ -8,12 +8,11 @@ type FormValues = {
 };
 
 type InputProps = {
-  sendID: (id: string) => void;
   sendDuration: (duration: number) => void;
 };
 
 
-function Input({ sendID, sendDuration }: InputProps) {
+function Input({sendDuration }: InputProps) {
   const { register, handleSubmit } = useForm<FormValues>();
   const [pID, setPID] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -23,11 +22,9 @@ function Input({ sendID, sendDuration }: InputProps) {
     try {
       const id = extractPlaylistID(data.playlist);
       setPID(id);
-      sendID(id);
 
       const response = await axios.post('http://localhost:5000/api/playlistItems', { pID: id });
       sendDuration(response.data);
-      console.log(response.data);
     } catch (error) {
       if (error instanceof AxiosError) {
         setError(error.message);

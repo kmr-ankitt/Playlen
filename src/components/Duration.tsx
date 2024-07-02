@@ -1,13 +1,11 @@
 type DurationProps = {
-  pID: string;
   duration: number;
 };
 
-const Duration: React.FC<DurationProps> = ({ pID, duration }) => {
+const Duration: React.FC<DurationProps> = ({ duration }) => {
 
   return (
-    <div>
-      <p>Playlist ID: {pID}</p>
+    <div className="flex flex-col items-center justify-center">
       <p>Duration: {duration} minutes</p>
     </div>
   );
