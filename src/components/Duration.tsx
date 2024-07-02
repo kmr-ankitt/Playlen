@@ -31,39 +31,38 @@ const Duration: React.FC<DurationProps> = ({ duration }) => {
 
   return (
     <div
-      className="flex flex-col items-center justify-center text-[1.2rem] bg-zinc-900 text-zinc-200 p-6  max-sm:text-[1rem] mt-[-5rem] max-sm:mt-0"
+      className=" flex flex-col w-full items-center text-[1.2rem] bg-zinc-900 text-zinc-200 p-6  max-sm:text-[1rem] mt-[-8rem] max-sm:mt-0"
       id="final-result"
     >
-      <div className="flex items-start justify-center gap-2 max-sm:gap-4 flex-col ">
+      <div className="  flex gap-6 justify-center max-sm:gap-4 max-sm:flex-col  flex-wrap  ">
         <SkeletonTheme baseColor="#202020" highlightColor="#444">
-          <p>
-            Total Duration:{" "}
+          <div> <p className="text-red-400">  Total Duration:</p>
             {durationInHoursMinutes !== "0 hours 00 minutes" ? (
-              durationInHoursMinutes
+              <p> {durationInHoursMinutes} </p>
             ) : (
               <Skeleton />
-            )}{" "}
-          </p>
-          <p>
-            Average Duration:{" "}
-            {duration.averageDuration !== 0 ? avgDuration : <Skeleton />}
-          </p>
-          <p>
-            Total Duration at 1.25x:{" "}
-            {duration.totalDuration !== 0 ? duration1_25x : <Skeleton />}
-          </p>
-          <p>
-            Total Duration at 1.5x:{" "}
-            {duration.totalDuration !== 0 ? duration1_5x : <Skeleton />}
-          </p>
-          <p>
-            Total Duration at 1.75x:{" "}
-            {duration.totalDuration !== 0 ? duration1_75x : <Skeleton />}
-          </p>
-          <p>
-            Total Duration at 2x:{" "}
-            {duration.totalDuration !== 0 ? duration2x : <Skeleton />}
-          </p>
+            )}
+          </div>
+          <div> <p className="text-red-400">  
+            Average Duration:{" "} </p>
+            {duration.averageDuration !== 0 ? <p> {avgDuration} </p> : <Skeleton />}
+          </div>
+          <div> <p className="text-red-400">  
+            Total Duration at 1.25x:{" "} </p>
+            {duration.totalDuration !== 0 ? <p> {duration1_25x} </p> : <Skeleton />}
+          </div>
+          <div> <p className="text-red-400">  
+            Total Duration at 1.5x:{" "}</p>
+            {duration.totalDuration !== 0 ? <p> {duration1_5x} </p> : <Skeleton />}
+          </div>
+          <div> <p className="text-red-400">  
+            Total Duration at 1.75x:{" "}</p>
+            {duration.totalDuration !== 0 ? <p> {duration1_75x} </p> : <Skeleton />}
+          </div>
+          <div> <p className="text-red-400">  
+            Total Duration at 2x:{" "}</p>
+            {duration.totalDuration !== 0 ? <p> {duration2x} </p> : <Skeleton />}
+          </div>
         </SkeletonTheme>
       </div>
     </div>
