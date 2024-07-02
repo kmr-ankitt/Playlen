@@ -3,6 +3,7 @@ import axios from "axios";
 import "dotenv/config";
 import bodyParser from "body-parser";
 import cors from "cors";
+import { parseISODurationToMinutes } from "./decoder";
 
 const app = express();
 const port = 5000;
@@ -11,19 +12,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-function parseISODurationToMinutes(duration) {
-  const regex = /^P(?:(\d+)D)?T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
-  const matches = duration.match(regex);
-  if (!matches) {
-    return null;
-  }
-  const days = parseInt(matches[1] || 0);
-  const hours = parseInt(matches[2] || 0);
-  const minutes = parseInt(matches[3] || 0);
-  const seconds = parseInt(matches[4] || 0);
-  const totalMinutes = days * 24 * 60 + hours * 60 + minutes + seconds / 60;
-  return Math.round(totalMinutes);
-}
 
 async function getVideoDuration(videoIds) {
   try {
