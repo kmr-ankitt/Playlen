@@ -26,7 +26,7 @@ function Input({sendDuration, isSubmitted }: InputProps) {
       isSubmitted(true);
       console.log(pID);
 
-      const response = await axios.post('http://localhost:5000/api/playlistItems', { pID: id });
+      const response = await axios.post('https://playlen-backend.onrender.com/api/playlistItems', { pID: id });
       console.log(response.data);
       sendDuration(response.data);
     } catch (error) {
