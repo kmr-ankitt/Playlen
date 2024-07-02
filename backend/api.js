@@ -66,6 +66,9 @@ async function fetchAllVideos(playlistId) {
   }
 }
 
+app.get("/", async (req, res) => {
+  res.send("Server is running");
+})
 app.post("/api/playlistItems", async (req, res) => {
   console.log("Request received");
   try {
