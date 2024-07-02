@@ -22,7 +22,7 @@ function parseISODurationToMinutes(duration) {
   const minutes = parseInt(matches[3] || 0);
   const seconds = parseInt(matches[4] || 0);
   const totalMinutes = days * 24 * 60 + hours * 60 + minutes + seconds / 60;
-  return totalMinutes;
+  return Math.round(totalMinutes);
 }
 
 async function getVideoDuration(videoIds) {
@@ -71,10 +71,11 @@ app.post("/api/playlistItems", async (req, res) => {
     console.log(videoIDs);
 
     const duration = await getVideoDuration(videoIDs);
-    res.status(200).send(`Video IDs fetched, total duration: ${duration} minutes`);
+    res.status(200).send(`${duration}`);
+
   } catch (error) {
     console.error("Error fetching playlist items:", error);
-    res.status(500).send("Error fetching playlist items");
+    res.status(500).send("Error fetching playlist items", error);
   }
 });
 

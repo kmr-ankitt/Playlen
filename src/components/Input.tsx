@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { extractPlaylistID } from '../utils/getPlaylistId';
 
 type FormValues = {
   playlist: string;
@@ -8,25 +9,15 @@ type FormValues = {
 
 type InputProps = {
   sendID: (id: string) => void;
+  sendDuration: (duration: number) => void;
 };
 
-function Input({ sendID }: InputProps) {
+
+function Input({ sendID, sendDuration }: InputProps) {
   const { register, handleSubmit } = useForm<FormValues>();
   const [pID, setPID] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const extractPlaylistID = (url: string): string => {
-    try {
-      if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        url = 'https://' + url;
-      }
-      const urlObj = new URL(url);
-      return urlObj.searchParams.get('list') || "";
-    } catch (error) {
-      console.error('Invalid URL');
-      return "";
-    }
-  };
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
@@ -35,12 +26,13 @@ function Input({ sendID }: InputProps) {
       sendID(id);
 
       const response = await axios.post('http://localhost:5000/api/playlistItems', { pID: id });
+      sendDuration(response.data);
       console.log(response.data);
     } catch (error) {
       if (error instanceof AxiosError) {
         setError(error.message);
       } else {
-        setError('An unknown error occurred');
+        setError('Invalid Playlist URL');
       }
     }
   };
