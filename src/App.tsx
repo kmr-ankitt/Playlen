@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Calculator from "./api/Calculator";
+import Calculator from "./components/Calculator";
 import Input from "./components/Input";
 import Navbar from "./components/Navbar";
 

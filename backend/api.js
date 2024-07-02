@@ -2,15 +2,19 @@ import express from 'express';
 import axios from 'axios';
 import 'dotenv/config';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const app = express();
 const port = 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());  
+
+
 
 app.post('/api/playlistItems', async (req, res) => {
-
+  console.log('Request received');
   try {
     const response = await axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
       params: {
