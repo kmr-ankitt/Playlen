@@ -1,30 +1,25 @@
-# React + TypeScript + Vite
+# Playlen 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Playlen is a easy to use, open source application that lets you find the length of your favorite YouTube Playlists. 
 
-Currently, two official plugins are available:
+## Why Playlen?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+YouTube is a great platform for sharing videos, but it's not easy to find the length of your favorite playlists. 
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Find the length of your favorite YouTube Playlists.
+- Know the time taken to cover whole playlists at different speeds.
+- Get to know the average length of your videos in a playlist.
 
-- Configure the top-level `parserOptions` property like this:
+## How to use Playlen
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+1. Go to the Playlen website.
+2. Enter the YouTube Playlist URL.
+3. Click on the "Submit" button.
+4. Wait for the results to load.
+5. Enjoy!
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Contributing
+
+Contributions are welcome! If you find any bugs or have any suggestions, please open an issue or submit a pull request.
