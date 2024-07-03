@@ -44,11 +44,11 @@ function Input({sendDuration, isSubmitted }: InputProps) {
         <input
           type="text"
           placeholder="Playlist URL"
-          className="p-2 w-1/3 min-w-[16rem] placeholder:text-center bg-zinc-200 text-zinc-600 outline-none"
+          className="p-2 w-1/3 min-w-[16rem] placeholder:text-center bg-zinc-200 text-zinc-600 outline-none focus:bg-zinc-300 focus:transition-[2s]"
           {...register('playlist', { required: true })}
         />
         {error && <div className="text-red-500">{error}</div>}
-        <input type="submit" value="submit" className="p-2 bg-[#DF470A] uppercase w-1/3 min-w-[16rem]" />
+        <input type="submit" value="submit" className="p-2 bg-[#DF470A] uppercase w-1/3 min-w-[16rem] hover:bg-[#df460aca] hover:transition-[2s]" />
       </form>
     </div>
   );
