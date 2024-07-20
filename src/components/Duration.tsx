@@ -31,7 +31,7 @@ const Duration: React.FC<DurationProps> = ({ duration }) => {
 
   return (
     <div
-      className=" flex flex-col w-full items-center text-[1.2rem] bg-zinc-900 text-zinc-200 p-6  max-sm:text-[1rem] max-sm:mt-[-8rem] max-sm:mt-0"
+      className=" flex flex-col w-full items-center text-[1.2rem] bg-zinc-900 text-zinc-200 p-6  max-sm:text-[1rem] max-sm:mt-[-8rem] mt-[-15rem]"
       id="final-result"
     >
       <div className="  flex gap-6 justify-center max-sm:gap-4 max-sm:flex-col  flex-wrap  ">
