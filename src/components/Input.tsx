@@ -40,7 +40,7 @@ function Input({sendDuration, isSubmitted }: InputProps) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-2 h-[70vh] items-center justify-center  max-sm:h-[50vh]">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-2 h-[100vh] items-center justify-center  max-sm:h-[100vh] bg-zinc-900 text-zinc-200">
         <input
           type="text"
           placeholder="Playlist URL"
