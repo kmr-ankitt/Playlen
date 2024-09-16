@@ -14,10 +14,9 @@ app.use(cors());
 
 async function getVideoDuration(videoIds) {
   try {
-    let duration = 0;
-    for (const videoID of videoIds) {
+    const requests = videoIds.map(videoID => {
       const url = `https://www.googleapis.com/youtube/v3/videos`;
-      const response = await axios.get(url, {
+      return axios.get(url, {
         params: {
           part: "contentDetails",
           id: videoID,
@@ -25,10 +24,15 @@ async function getVideoDuration(videoIds) {
           key: process.env.YOUTUBE_API_KEY,
         },
       });
+    });
+
+    const responses = await Promise.all(requests);
+    const totalDuration = responses.reduce((acc, response) => {
       const data = response.data.items[0].contentDetails.duration;
-      duration += parseISODurationToMinutes(data);
-    }
-    return { totalDuration: duration, videoCount: videoIds.length };
+      return acc + parseISODurationToMinutes(data);
+    }, 0);
+
+    return { totalDuration, videoCount: videoIds.length };
   } catch (error) {
     console.log("Error fetching video duration:", error);
     return null;
