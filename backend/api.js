@@ -39,6 +39,27 @@ async function getVideoDuration(videoIds) {
   }
 }
 
+async function fetchPlaylistDetails(playlistId) {
+  try {
+    const response = await axios.get("https://www.googleapis.com/youtube/v3/playlists", {
+      params: {
+        part: "snippet",
+        id: playlistId,
+        // eslint-disable-next-line no-undef
+        key: process.env.YOUTUBE_API_KEY,
+      },
+    });
+
+    const playlistTitle = response.data.items[0].snippet.title;
+    const playlistThumbnail = response.data.items[0].snippet.thumbnails.medium.url;
+
+    return { playlistTitle, playlistThumbnail };
+  } catch (error) {
+    console.error("Error fetching playlist details:", error);
+    return null;
+  }
+}
+
 async function fetchAllVideos(playlistId) {
   let videoIDs = [];
   let nextPageToken = "";
@@ -76,13 +97,22 @@ app.get("/", async (req, res) => {
 app.post("/api/playlistItems", async (req, res) => {
   console.log("Request received");
   try {
-    const videoIDs = await fetchAllVideos(req.body.pID);
-    if (videoIDs) {
+    const [videoIDs, playlistDetails] = await Promise.all([
+      fetchAllVideos(req.body.pID),
+      fetchPlaylistDetails(req.body.pID)
+    ]);
+
+    if (videoIDs && playlistDetails) {
       const { totalDuration, videoCount } = await getVideoDuration(videoIDs);
       const averageDuration = Math.round(totalDuration / videoCount);
-      res.status(200).json({ totalDuration, averageDuration});
+      res.status(200).json({ 
+        totalDuration, 
+        averageDuration, 
+        playlistTitle: playlistDetails.playlistTitle, 
+        playlistThumbnail: playlistDetails.playlistThumbnail 
+      });
     } else {
-      res.status(500).send("Error fetching playlist items");
+      res.status(500).send("Error fetching playlist items or details");
     }
   } catch (error) {
     console.error("Error fetching playlist items:", error);
