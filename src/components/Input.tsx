@@ -30,7 +30,6 @@ function Input({ sendDuration, isSubmitted, sendLink }: InputProps) {
       sendLink(`https://www.youtube.com/playlist?list=${id}`);
       isSubmitted(true);
       console.log(pID);
-      location.href = "#final-result";
 
       const response = await axios.post(
         "https://playlen-backend.onrender.com/api/playlistItems",
