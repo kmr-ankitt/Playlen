@@ -25,6 +25,7 @@ function Input({ sendDuration, isSubmitted, sendLink }: InputProps) {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
+
       const id = extractPlaylistID(data.playlist);
       setPID(id);
       sendLink(`https://www.youtube.com/playlist?list=${id}`);
